@@ -2,7 +2,7 @@
 //  DogsViewController.swift
 //  SwiftMVVM
 //
-//  Created by Sanchez Custodio, Abel (Cognizant) on 21/02/2018.
+//  Created by Sanchez Custodio, Abel on 21/02/2018.
 //  Copyright © 2018 acsanchezcu. All rights reserved.
 //
 
@@ -54,8 +54,10 @@ class DogsViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.dataSource.dogs = dogs
                 self?.tableView.reloadData()
-                print("reload data")
             }
+            
+            // Fetch image for each dog
+            dogs.forEach { self?.viewModel.fetchDogImage($0)}
         }
         
         viewModel.displayLoading = { [weak self] loading in
@@ -70,13 +72,15 @@ class DogsViewController: UIViewController {
             }
         }
         
-        viewModel.reloadIndexPathIfNeeded = { [weak self] index in
-            DispatchQueue.main.async {
-                self?.reloadIndexPathIfNeeded(index)
+        viewModel.reloadDogViewModel = { [weak self] dogViewModel in
+            if let index = self?.dataSource.dogs.index(where: {$0 === dogViewModel}) {
+                DispatchQueue.main.async {
+                    self?.reloadIndexPathIfNeeded(Int(index))
+                }
             }
         }
         
-        viewModel.fechData()
+        viewModel.fetchData()
     }
     
     private func reloadIndexPathIfNeeded(_ index: Int) {

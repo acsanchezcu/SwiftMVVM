@@ -2,7 +2,7 @@
 //  APIService.swift
 //  SwiftMVVM
 //
-//  Created by Sanchez Custodio, Abel (Cognizant) on 21/02/2018.
+//  Created by Sanchez Custodio, Abel on 21/02/2018.
 //  Copyright © 2018 acsanchezcu. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ protocol ServiceProtocol {
     func getRandomImage(breed: String, completionHandler: @escaping CompletionHandler)
 }
 
-class APIService {
+class APIService: ServiceProtocol {
     
     // MARK: - Nested
     
@@ -44,9 +44,7 @@ class APIService {
         self.session = session
     }
     
-}
-
-extension APIService: ServiceProtocol {
+    // MARK: - ServiceProtocol
     
     func getDogs(completionHandler: @escaping CompletionHandler) {
         let urlRequest = URLRequest(url: URL(string: EndPoint.list.description)!)

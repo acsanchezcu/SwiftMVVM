@@ -2,7 +2,7 @@
 //  ImageCache.swift
 //  SwiftMVVM
 //
-//  Created by Sanchez Custodio, Abel (Cognizant) on 23/02/2018.
+//  Created by Sanchez Custodio, Abel on 23/02/2018.
 //  Copyright © 2018 acsanchezcu. All rights reserved.
 //
 

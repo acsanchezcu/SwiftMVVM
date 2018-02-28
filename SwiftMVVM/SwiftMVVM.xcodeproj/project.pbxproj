@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0897B7F92040375500D88BF9 /* DogParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0897B7F82040375500D88BF9 /* DogParseTests.swift */; };
+		08980D622046CE9D0083E37F /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08980D612046CE9D0083E37F /* MockApiService.swift */; };
 		08D19D5520405E06001E90C2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5420405E06001E90C2 /* UIImageView+Extension.swift */; };
 		08D19D5720405F0A001E90C2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5620405F0A001E90C2 /* ImageCache.swift */; };
 		08D19D5D204075F8001E90C2 /* DogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5C204075F8001E90C2 /* DogViewModelTests.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		0897B7F82040375500D88BF9 /* DogParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogParseTests.swift; sourceTree = "<group>"; };
+		08980D612046CE9D0083E37F /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		08D19D5420405E06001E90C2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		08D19D5620405F0A001E90C2 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		08D19D5C204075F8001E90C2 /* DogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModelTests.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08980D602046CE940083E37F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				08980D612046CE9D0083E37F /* MockApiService.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		08D19D3A20403D96001E90C2 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +124,8 @@
 		08D19D6020407A2F001E90C2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				08D19D6920407AA9001E90C2 /* Models */,
+				08D19D6B20407AA9001E90C2 /* Parsers */,
 				08D19D6120407A3B001E90C2 /* Models */,
 				08D19D5320405DF7001E90C2 /* Utils */,
 			);
@@ -133,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				08D19D6720407AA9001E90C2 /* Controllers */,
-				08D19D6920407AA9001E90C2 /* Models */,
-				08D19D6B20407AA9001E90C2 /* Parsers */,
 				08D19D6E20407AA9001E90C2 /* ViewModels */,
 				08D19D7120407AA9001E90C2 /* Views */,
 			);
@@ -155,7 +165,8 @@
 			children = (
 				08D19D6A20407AA9001E90C2 /* Dog.swift */,
 			);
-			path = Models;
+			name = Models;
+			path = ../Modules/Dogs/Models;
 			sourceTree = "<group>";
 		};
 		08D19D6B20407AA9001E90C2 /* Parsers */ = {
@@ -221,6 +232,7 @@
 		08DE9CA5203D946A0007FC14 /* SwiftMVVMTests */ = {
 			isa = PBXGroup;
 			children = (
+				08980D602046CE940083E37F /* Utils */,
 				08D19D5A204075CC001E90C2 /* ViewModels */,
 				08D19D3A20403D96001E90C2 /* Parse */,
 				08DE9CA8203D946A0007FC14 /* Info.plist */,
@@ -379,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08980D622046CE9D0083E37F /* MockApiService.swift in Sources */,
 				0897B7F92040375500D88BF9 /* DogParseTests.swift in Sources */,
 				08D19D5D204075F8001E90C2 /* DogViewModelTests.swift in Sources */,
 			);
