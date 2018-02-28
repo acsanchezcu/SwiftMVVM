@@ -15,4 +15,9 @@ struct Coordinator {
         return viewController
     }
     
+    func detailViewController(viewModel: DetailViewModel) -> UIViewController {
+        let viewController = DetailViewController(viewModel: viewModel)
+        return viewController
+    }
+    
 }

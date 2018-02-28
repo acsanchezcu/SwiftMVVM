@@ -9,13 +9,13 @@
 import UIKit
 
 class DogsTableViewDataSource: NSObject, UITableViewDataSource {
+    
     var dogs = [DogViewModel]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dogs.count
     }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         

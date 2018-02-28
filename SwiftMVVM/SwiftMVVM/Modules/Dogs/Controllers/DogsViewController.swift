@@ -8,18 +8,19 @@
 
 import UIKit
 
-class DogsViewController: UIViewController {
+class DogsViewController: BaseViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.dataSource = dataSource
-//            tableView.delegate = self
+            tableView.delegate = self
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 90.0
             let nib = UINib(nibName: String(describing: DogTableViewCell.self), bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: "reuseIdentifier")
+            tableView.tableFooterView = UIView()
         }
     }
     // MARK: - Properties
@@ -45,6 +46,8 @@ class DogsViewController: UIViewController {
         super.viewDidLoad()
 
         manageViewModel()
+        
+        title = "dogs"
     }
     
     // MARK: - Private Methods
@@ -80,6 +83,10 @@ class DogsViewController: UIViewController {
             }
         }
         
+        viewModel.navigateToDetail = { [weak self] viewController in
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        }
+        
         viewModel.fetchData()
     }
     
@@ -89,27 +96,27 @@ class DogsViewController: UIViewController {
         let indexPath = IndexPath(row: index, section: 0)
         
         if indexPaths.contains(indexPath) {
-            print("reload indexPath \(indexPath.row)")
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
 
     private func displayLoading(_ loading: Bool) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = loading
-        
         if loading {
-            // display loading
-            
+            showLoading()
         } else {
-            // hide loading
+            dismissLoading()
         }
     }
     
     private func displayError(_ error: CustomError) {
-        // localized text
-        let alertController = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
+        displayAlert(withTitle: "Error", message: error.description)
     }
+}
+
+extension DogsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRowAt(indexPath: indexPath)
+    }
+    
 }

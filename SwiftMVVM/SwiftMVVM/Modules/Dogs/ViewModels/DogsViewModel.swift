@@ -6,6 +6,8 @@
 //  Copyright © 2018 acsanchezcu. All rights reserved.
 //
 
+import UIKit
+
 class DogsViewModel {
     
     // MARK: - Binding
@@ -14,10 +16,12 @@ class DogsViewModel {
     var displayLoading: ((Bool) -> ())?
     var displayDogs: (([DogViewModel]) -> ())?
     var reloadDogViewModel: ((DogViewModel) -> ())?
+    var navigateToDetail: ((UIViewController) -> ())?
     
     // MARK: - Properties
     
     private var service: APIService
+    private var coordinator: Coordinator
     
     private var viewModels = [DogViewModel]()
     
@@ -35,8 +39,9 @@ class DogsViewModel {
     
     // MARK: - Init
     
-    init(service: APIService = APIService()) {
+    init(service: APIService = APIService(), coordinator: Coordinator = Coordinator()) {
         self.service = service
+        self.coordinator = coordinator
     }
     
     // MARK: - Public methods
@@ -75,4 +80,10 @@ class DogsViewModel {
         })
     }
 
+    func didSelectRowAt(indexPath: IndexPath) {
+        let breed = viewModels[indexPath.row].breed
+        let viewModel = DetailViewModel(breed: breed)
+        let viewController = coordinator.detailViewController(viewModel: viewModel)
+        navigateToDetail?(viewController)
+    }
 }
