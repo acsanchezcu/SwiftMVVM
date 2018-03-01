@@ -24,6 +24,8 @@
 		08AB1300204812E20061B740 /* DetailCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB12FF204812E20061B740 /* DetailCollectionViewDataSource.swift */; };
 		08AB1304204817ED0061B740 /* BreedParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB1303204817ED0061B740 /* BreedParseTests.swift */; };
 		08AB130620481B4B0061B740 /* DetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB130520481B4B0061B740 /* DetailViewModelTests.swift */; };
+		08AB130920481E2A0061B740 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08AB130820481E2A0061B740 /* Localizable.strings */; };
+		08AB130B20481E3E0061B740 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB130A20481E3E0061B740 /* String+Extension.swift */; };
 		08D19D5520405E06001E90C2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5420405E06001E90C2 /* UIImageView+Extension.swift */; };
 		08D19D5720405F0A001E90C2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5620405F0A001E90C2 /* ImageCache.swift */; };
 		08D19D5D204075F8001E90C2 /* DogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D19D5C204075F8001E90C2 /* DogViewModelTests.swift */; };
@@ -74,6 +76,8 @@
 		08AB12FF204812E20061B740 /* DetailCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		08AB1303204817ED0061B740 /* BreedParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedParseTests.swift; sourceTree = "<group>"; };
 		08AB130520481B4B0061B740 /* DetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTests.swift; sourceTree = "<group>"; };
+		08AB130820481E2A0061B740 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		08AB130A20481E3E0061B740 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		08D19D5420405E06001E90C2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		08D19D5620405F0A001E90C2 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		08D19D5C204075F8001E90C2 /* DogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModelTests.swift; sourceTree = "<group>"; };
@@ -181,6 +185,14 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		08AB130720481E0E0061B740 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				08AB130820481E2A0061B740 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		08D19D3A20403D96001E90C2 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				08D19D5420405E06001E90C2 /* UIImageView+Extension.swift */,
+				08AB130A20481E3E0061B740 /* String+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -307,6 +320,7 @@
 		08DE9C90203D946A0007FC14 /* SwiftMVVM */ = {
 			isa = PBXGroup;
 			children = (
+				08AB130720481E0E0061B740 /* Resources */,
 				08AB12F22047F62E0061B740 /* Coordinators */,
 				08D19D6020407A2F001E90C2 /* Common */,
 				08DE9CB2203D94C30007FC14 /* Modules */,
@@ -444,6 +458,7 @@
 				08D19D7D20407AA9001E90C2 /* DogTableViewCell.xib in Resources */,
 				08DE9C9C203D946A0007FC14 /* LaunchScreen.storyboard in Resources */,
 				08AB12E52047138A0061B740 /* DetailViewController.xib in Resources */,
+				08AB130920481E2A0061B740 /* Localizable.strings in Resources */,
 				08DE9C99203D946A0007FC14 /* Assets.xcassets in Resources */,
 				08AB12FE204811FD0061B740 /* ImageCollectionViewCell.xib in Resources */,
 				08D19D7B20407AA9001E90C2 /* DogsViewController.xib in Resources */,
@@ -483,6 +498,7 @@
 				08AB12E8204713AE0061B740 /* DetailViewController.swift in Sources */,
 				08AB1300204812E20061B740 /* DetailCollectionViewDataSource.swift in Sources */,
 				08D19D7A20407AA9001E90C2 /* DogViewModel.swift in Sources */,
+				08AB130B20481E3E0061B740 /* String+Extension.swift in Sources */,
 				08D19D7720407AA9001E90C2 /* DogParse.swift in Sources */,
 				08D19D7520407AA9001E90C2 /* DogsViewController.swift in Sources */,
 				08D19D6520407A71001E90C2 /* CustomError.swift in Sources */,

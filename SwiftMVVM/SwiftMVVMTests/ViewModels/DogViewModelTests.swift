@@ -102,7 +102,7 @@ class DogViewModelTests: XCTestCase {
         
         let dogs = fetchDogs()
 
-        viewModel.displayDogs = { viewModels in
+        viewModel.displayDogs = { viewModels, _ in
             expect.fulfill()
             XCTAssertEqual(dogs.count, viewModels.count)
         }
@@ -149,6 +149,43 @@ class DogViewModelTests: XCTestCase {
 
         XCTAssertTrue(mockCoordinator.navigateCalled)
         XCTAssertEqual(mockCoordinator.navigateWithBreed, dogsViewModel.first?.breed)
+    }
+    
+    func testMatchingSearch() {
+        let search = "hound"
+        
+        XCTAssertTrue(search.contains(string: "H"))
+        XCTAssertTrue(search.contains(string: "Hound"))
+        XCTAssertTrue(search.contains(string: "HOUND"))
+        XCTAssertFalse(search.contains(string: "boxer"))
+    }
+    
+    func testSearch() {
+        let dogs = fetchDogs()
+        
+        viewModel.fetchData()
+        
+        mockApiService.fetchSuccessResponse(dogs)
+        
+        viewModel.displayDogs = { viewModels, _ in
+            XCTAssertEqual(viewModels.count, 3)
+        }
+        
+        viewModel.didSearch(search: "hound")
+    }
+    
+    func testFailSearch() {
+        let dogs = fetchDogs()
+        
+        viewModel.fetchData()
+        
+        mockApiService.fetchSuccessResponse(dogs)
+        
+        viewModel.displayDogs = { viewModels, _ in
+            XCTAssertEqual(viewModels.count, 0)
+        }
+        
+        viewModel.didSearch(search: "boxer")
     }
 }
 

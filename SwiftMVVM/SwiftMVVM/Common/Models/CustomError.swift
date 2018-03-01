@@ -22,7 +22,7 @@ enum CustomError {
     var description: String {
         switch self {
         case .general:
-            return "General error"
+            return "error_default".localized
         case .custom(let message):
             return "\(message)"
         }

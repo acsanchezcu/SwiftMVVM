@@ -18,6 +18,7 @@ class DogsViewController: BaseViewController {
             tableView.delegate = self
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 90.0
+            tableView.keyboardDismissMode = .onDrag
             let nib = UINib(nibName: String(describing: DogTableViewCell.self), bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: DogTableViewCell.reuseIdentifier())
             tableView.tableFooterView = UIView()
@@ -27,6 +28,23 @@ class DogsViewController: BaseViewController {
     
     private var viewModel: DogsViewModel
     private let dataSource = DogsTableViewDataSource()
+    
+    // Navigation bar items
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar(frame: .zero)
+
+        searchBar.placeholder = "dogs_placeholder".localized
+        searchBar.delegate = self
+        searchBar.isHidden = true
+        
+        return searchBar
+    }()
+    
+    lazy var rightBarButtomItem: UIBarButtonItem = {
+        let barButtomItem = UIBarButtonItem(title: "dogs_search".localized, style: .done, target: self, action: #selector(rightBarButtomItemTapped))
+        return barButtomItem
+    }()
     
     // MARK: - Init
     
@@ -47,20 +65,43 @@ class DogsViewController: BaseViewController {
 
         manageViewModel()
         
-        title = "dogs"
+        title = "dogs_title".localized
+        
+        navigationItem.rightBarButtonItem = rightBarButtomItem
+    }
+    
+    // MARK: - Actions
+    
+    @objc func rightBarButtomItemTapped() {
+        searchBar.isHidden = !searchBar.isHidden
+        
+        if searchBar.isHidden {
+            navigationItem.titleView = nil
+            rightBarButtomItem.title = "dogs_search".localized
+            searchBar.resignFirstResponder()
+        } else {
+            navigationItem.titleView = searchBar
+            rightBarButtomItem.title = "dogs_cancel".localized
+            searchBar.becomeFirstResponder()
+        }
+        
+        searchBar.text = nil
+        viewModel.didSearch(search: nil)
     }
     
     // MARK: - Private Methods
     
     private func manageViewModel() {
-        viewModel.displayDogs = { [weak self] dogs in
+        viewModel.displayDogs = { [weak self] dogs, fetchImages in
             DispatchQueue.main.async {
                 self?.dataSource.dogs = dogs
                 self?.tableView.reloadData()
             }
             
-            // Fetch image for each dog
-            dogs.forEach { self?.viewModel.fetchDogImage($0)}
+            if fetchImages {
+                // Fetch image for each dog
+                dogs.forEach { self?.viewModel.fetchDogImage($0)}
+            }
         }
         
         viewModel.displayLoading = { [weak self] loading in
@@ -109,7 +150,7 @@ class DogsViewController: BaseViewController {
     }
     
     private func displayError(_ error: CustomError) {
-        displayAlert(withTitle: "Error", message: error.description)
+        displayAlert(withTitle: "error_title".description, message: error.description)
     }
 }
 
@@ -119,4 +160,16 @@ extension DogsViewController: UITableViewDelegate {
         viewModel.didSelectRowAt(indexPath: indexPath)
     }
     
+}
+
+extension DogsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.didSearch(search: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
 }

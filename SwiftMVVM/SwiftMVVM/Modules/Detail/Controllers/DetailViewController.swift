@@ -80,7 +80,7 @@ class DetailViewController: BaseViewController {
     }
     
     private func displayError(_ error: CustomError) {
-        displayAlert(withTitle: "Error", message: error.description)
+        displayAlert(withTitle: "error_title".localized, message: error.description)
     }
 }
 

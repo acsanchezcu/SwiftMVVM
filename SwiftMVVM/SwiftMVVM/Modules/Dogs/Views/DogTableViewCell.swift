@@ -21,7 +21,7 @@ class DogTableViewCell: UITableViewCell {
     @IBOutlet weak var breedImageView: UIImageView! {
         didSet {
             breedImageView.layer.masksToBounds = true
-            breedImageView.layer.cornerRadius = 25
+            breedImageView.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .phone ? 25 : 37.5
         }
     }
     
