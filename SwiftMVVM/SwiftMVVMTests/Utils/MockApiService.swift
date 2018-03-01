@@ -23,6 +23,10 @@ class MockApiService: APIService {
         self.completionHandler = completionHandler
     }
     
+    override func getBreedImages(breed: String, completionHandler: @escaping CompletionHandler) {
+        self.completionHandler = completionHandler
+    }
+    
     // MARK: - Public methods
     
     func fetchSuccessResponse(_ data: Any) {

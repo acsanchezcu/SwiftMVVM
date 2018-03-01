@@ -10,16 +10,8 @@ import XCTest
 @testable import SwiftMVVM
 
 class DogParseTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+    // MARK: - Tests
     
     func testFailParse() {
         guard let data = "".data(using: .utf8) else {
@@ -79,6 +71,44 @@ class DogParseTests: XCTestCase {
             XCTAssertEqual(dogs.count, 6)
             XCTAssertEqual(dogs.first?.breed, "hound")
             XCTAssertEqual(dogs.first?.subBreed, "Ibizan")
+        default:
+            XCTFail("response fails")
+        }
+    }
+    
+    func testFailParseDogImages() {
+        guard let data = "".data(using: .utf8) else {
+            XCTFail("Wrong data built")
+            return
+        }
+        
+        let response = DogImageParse().parse(data: data)
+        
+        switch response.status {
+        case .failed(let error):
+            XCTAssertNotNil(error)
+        default:
+            XCTFail("response fails")
+        }
+    }
+    
+    func testSuccessParseDogImages() {
+        guard let data = """
+        {"status":"success","message":"imageUrl"}
+        """.data(using: .utf8) else {
+            XCTFail("Wrong data built")
+            return
+        }
+        
+        let response = DogImageParse().parse(data: data)
+        
+        switch response.status {
+        case .success(let imageUrl):
+            guard let imageUrl = imageUrl as? String else {
+                XCTFail("wrong data")
+                return
+            }
+            XCTAssertEqual(imageUrl, "imageUrl")
         default:
             XCTFail("response fails")
         }

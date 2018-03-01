@@ -17,6 +17,8 @@ class DogViewModelTests: XCTestCase {
     var mockApiService: MockApiService!
     var mockCoordinator: MockDogsCoordinator!
     
+    // MARK: - Setup
+    
     override func setUp() {
         super.setUp()
 
@@ -40,6 +42,8 @@ class DogViewModelTests: XCTestCase {
                 Dog(breed: "hound", subBreed: "afghan", imageUrl: nil),
                 Dog(breed: "affenpinscher", subBreed: nil, imageUrl: nil)]
     }
+    
+    // MARK: - Tests
     
     /// Verify that sort and map correctly
     
