@@ -15,12 +15,14 @@ class DogViewModelTests: XCTestCase {
     
     var viewModel: DogsViewModel!
     var mockApiService: MockApiService!
+    var mockCoordinator: MockDogsCoordinator!
     
     override func setUp() {
         super.setUp()
 
         mockApiService = MockApiService()
-        viewModel = DogsViewModel(service: mockApiService)
+        mockCoordinator = MockDogsCoordinator(presenter: UINavigationController())
+        viewModel = DogsViewModel(service: mockApiService, coordinator: mockCoordinator)
     }
     
     override func tearDown() {
@@ -128,6 +130,32 @@ class DogViewModelTests: XCTestCase {
             
             wait(for: [expect], timeout: 1.0)
         }
+    }
+
+    func testNavigation() {
+        let dogs = fetchDogs()
+        
+        let dogsViewModel = DogViewModel.mapper(dogs: dogs)
+        
+        viewModel.fetchData()
+        
+        mockApiService.fetchSuccessResponse(dogs)
+        
+        viewModel.didSelectRowAt(indexPath: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(mockCoordinator.navigateCalled)
+        XCTAssertEqual(mockCoordinator.navigateWithBreed, dogsViewModel.first?.breed)
+    }
+}
+
+class MockDogsCoordinator: DogsCoordinator {
+    
+    var navigateCalled: Bool = false
+    var navigateWithBreed: String = ""
+    
+    override func navigateToDetail(breed: String) {
+        navigateCalled = true
+        navigateWithBreed = breed
     }
     
 }

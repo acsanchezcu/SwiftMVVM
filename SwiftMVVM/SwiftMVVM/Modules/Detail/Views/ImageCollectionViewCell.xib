@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reuseIdentifier" id="R5T-o8-NmT" customClass="ImageCollectionViewCell" customModule="SwiftMVVM" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog" translatesAutoresizingMaskIntoConstraints="NO" id="Uha-wN-bt8">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Uha-wN-bt8" secondAttribute="trailing" id="Hcj-kY-teD"/>
+                <constraint firstAttribute="bottom" secondItem="Uha-wN-bt8" secondAttribute="bottom" id="PJW-kY-9KB"/>
+                <constraint firstItem="Uha-wN-bt8" firstAttribute="top" secondItem="R5T-o8-NmT" secondAttribute="top" id="q4N-hv-1td"/>
+                <constraint firstItem="Uha-wN-bt8" firstAttribute="leading" secondItem="R5T-o8-NmT" secondAttribute="leading" id="tn1-m3-lDu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="QML-Pf-4DX"/>
+            <connections>
+                <outlet property="imageView" destination="Uha-wN-bt8" id="76J-ZN-FU7"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="dog" width="512" height="512"/>
+    </resources>
+</document>

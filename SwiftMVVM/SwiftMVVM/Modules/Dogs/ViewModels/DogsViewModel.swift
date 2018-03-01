@@ -21,7 +21,7 @@ class DogsViewModel {
     // MARK: - Properties
     
     private var service: APIService
-    private var coordinator: Coordinator
+    private var coordinator: DogsCoordinator
     
     private var viewModels = [DogViewModel]()
     
@@ -39,7 +39,7 @@ class DogsViewModel {
     
     // MARK: - Init
     
-    init(service: APIService = APIService(), coordinator: Coordinator = Coordinator()) {
+    init(service: APIService = APIService(), coordinator: DogsCoordinator) {
         self.service = service
         self.coordinator = coordinator
     }
@@ -67,7 +67,7 @@ class DogsViewModel {
     func fetchDogImage(_ viewModel: DogViewModel) {
         var breed = viewModel.breed
         if let subBreed = viewModel.subBreed { breed.append("/\(subBreed)") }
-        service.getRandomImage(breed: breed, completionHandler: { [weak self] response in
+        service.getDogImage(breed: breed, completionHandler: { [weak self] response in
             switch response.status {
             case .failed(_): break
             case .success(let imageUrl):
@@ -82,8 +82,7 @@ class DogsViewModel {
 
     func didSelectRowAt(indexPath: IndexPath) {
         let breed = viewModels[indexPath.row].breed
-        let viewModel = DetailViewModel(breed: breed)
-        let viewController = coordinator.detailViewController(viewModel: viewModel)
-        navigateToDetail?(viewController)
+        
+        coordinator.navigateToDetail(breed: breed)
     }
 }

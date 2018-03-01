@@ -19,7 +19,7 @@ class MockApiService: APIService {
         self.completionHandler = completionHandler
     }
     
-    override func getRandomImage(breed: String, completionHandler: @escaping CompletionHandler) {
+    override func getDogImage(breed: String, completionHandler: @escaping CompletionHandler) {
         self.completionHandler = completionHandler
     }
     

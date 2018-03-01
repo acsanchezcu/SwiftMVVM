@@ -25,6 +25,11 @@ class DogTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Class methods
+    
+    class func reuseIdentifier() -> String {
+        return "reuseIdentifier"
+    }
 }
 
 extension DogTableViewCell: DogTableViewCellProtocol {

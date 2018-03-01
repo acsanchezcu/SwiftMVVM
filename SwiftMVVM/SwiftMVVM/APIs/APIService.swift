@@ -13,7 +13,7 @@ typealias CompletionHandler = (Response) -> ()
 
 protocol ServiceProtocol {
     func getDogs(completionHandler: @escaping CompletionHandler)
-    func getRandomImage(breed: String, completionHandler: @escaping CompletionHandler)
+    func getDogImage(breed: String, completionHandler: @escaping CompletionHandler)
 }
 
 class APIService: ServiceProtocol {
@@ -21,15 +21,18 @@ class APIService: ServiceProtocol {
     // MARK: - Nested
     
     private enum EndPoint: CustomStringConvertible {
-        case list
-        case randomImage(String)
+        case dogs
+        case dogImage(String)
+        case breedImages(String)
         
         var description: String {
             switch self {
-            case .list:
+            case .dogs:
                 return "https://dog.ceo/api/breeds/list/all"
-            case .randomImage(let breed):
+            case .dogImage(let breed):
                 return "https://dog.ceo/api/breed/\(breed)/images/random"
+            case .breedImages(let breed):
+                return "https://dog.ceo/api/breed/\(breed)/images/images"
             }
         }
     }
@@ -47,7 +50,7 @@ class APIService: ServiceProtocol {
     // MARK: - ServiceProtocol
     
     func getDogs(completionHandler: @escaping CompletionHandler) {
-        let urlRequest = URLRequest(url: URL(string: EndPoint.list.description)!)
+        let urlRequest = URLRequest(url: URL(string: EndPoint.dogs.description)!)
         
         session.dataTask(with: urlRequest) { (data, response, error) in
             if let data = data {
@@ -58,15 +61,28 @@ class APIService: ServiceProtocol {
             }.resume()
     }
     
-    func getRandomImage(breed: String, completionHandler: @escaping CompletionHandler) {
-        let urlRequest = URLRequest(url: URL(string: EndPoint.randomImage(breed).description)!)
+    func getDogImage(breed: String, completionHandler: @escaping CompletionHandler) {
+        let urlRequest = URLRequest(url: URL(string: EndPoint.dogImage(breed).description)!)
         
         session.dataTask(with: urlRequest) { (data, response, error) in
             if let data = data {
-                completionHandler(RandomImageParse().parse(data: data))
+                completionHandler(DogImageParse().parse(data: data))
             } else {
                 completionHandler(Response(error: error))
             }
             }.resume()
     }
+    
+    func getBreedImages(breed: String, completionHandler: @escaping CompletionHandler) {
+        let urlRequest = URLRequest(url: URL(string: EndPoint.breedImages(breed).description)!)
+        
+        session.dataTask(with: urlRequest) { (data, response, error) in
+            if let data = data {
+                completionHandler(BreedImagesParse().parse(data: data))
+            } else {
+                completionHandler(Response(error: error))
+            }
+            }.resume()
+    }
+    
 }

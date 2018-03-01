@@ -19,7 +19,7 @@ class DogsViewController: BaseViewController {
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 90.0
             let nib = UINib(nibName: String(describing: DogTableViewCell.self), bundle: nil)
-            tableView.register(nib, forCellReuseIdentifier: "reuseIdentifier")
+            tableView.register(nib, forCellReuseIdentifier: DogTableViewCell.reuseIdentifier())
             tableView.tableFooterView = UIView()
         }
     }
