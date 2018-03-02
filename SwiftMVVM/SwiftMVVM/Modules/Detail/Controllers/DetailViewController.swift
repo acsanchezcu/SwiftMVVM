@@ -90,4 +90,10 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDelega
         return CGSize(width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.width/3)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let zoomViewController = ZoomViewController(imageUrl: dataSource.viewModels[indexPath.row].imageUrl)
+        
+        present(zoomViewController, animated: true, completion: nil)
+    }
+    
 }
