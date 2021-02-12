@@ -16,7 +16,7 @@ class DogsViewController: BaseViewController {
         didSet {
             tableView.dataSource = dataSource
             tableView.delegate = self
-            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.rowHeight = UITableView.automaticDimension
             tableView.estimatedRowHeight = 90.0
             tableView.keyboardDismissMode = .onDrag
             let nib = UINib(nibName: String(describing: DogTableViewCell.self), bundle: nil)
@@ -117,7 +117,7 @@ class DogsViewController: BaseViewController {
         }
         
         viewModel.reloadDogViewModel = { [weak self] dogViewModel in
-            if let index = self?.dataSource.dogs.index(where: {$0 === dogViewModel}) {
+            if let index = self?.dataSource.dogs.firstIndex(where: {$0 === dogViewModel}) {
                 DispatchQueue.main.async {
                     self?.reloadIndexPathIfNeeded(Int(index))
                 }

@@ -32,7 +32,7 @@ class APIService: ServiceProtocol {
             case .dogImage(let breed):
                 return "https://dog.ceo/api/breed/\(breed)/images/random"
             case .breedImages(let breed):
-                return "https://dog.ceo/api/breed/\(breed)/images/images"
+                return "https://dog.ceo/api/breed/\(breed)/images"
             }
         }
     }
@@ -58,7 +58,7 @@ class APIService: ServiceProtocol {
             } else {
                 completionHandler(Response(error: error))
             }
-            }.resume()
+        }.resume()
     }
     
     func getDogImage(breed: String, completionHandler: @escaping CompletionHandler) {
@@ -70,7 +70,7 @@ class APIService: ServiceProtocol {
             } else {
                 completionHandler(Response(error: error))
             }
-            }.resume()
+        }.resume()
     }
     
     func getBreedImages(breed: String, completionHandler: @escaping CompletionHandler) {
@@ -82,7 +82,7 @@ class APIService: ServiceProtocol {
             } else {
                 completionHandler(Response(error: error))
             }
-            }.resume()
+        }.resume()
     }
     
 }
